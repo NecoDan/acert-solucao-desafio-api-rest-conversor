@@ -1,8 +1,9 @@
 package br.com.acert.api.conversor.temperaturas.util.exceptions;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class ValidadorException extends Exception {
-    public ValidadorException() {
-    }
 
     public ValidadorException(String s) {
         super(s);

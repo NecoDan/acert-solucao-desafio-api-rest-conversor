@@ -18,7 +18,7 @@ import java.util.Objects;
 @MappedSuperclass
 @SuperBuilder
 @Data
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "id")
 @JacksonXmlRootElement
 public class AbstractEntity implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -31,10 +31,10 @@ public class AbstractEntity implements Serializable {
     private Long id;
 
     @JacksonXmlProperty
-    @Column(name = "dt_cadastro")
+    @Column(name = "data")
     @Setter(value = AccessLevel.PUBLIC)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", locale = "pt-BR", timezone = "UTC")
-    private LocalDateTime dataCadastro;
+    private LocalDateTime data;
 
     @JacksonXmlProperty
     @Setter(value = AccessLevel.PUBLIC)
@@ -46,8 +46,8 @@ public class AbstractEntity implements Serializable {
     }
 
     public void gerarDataCorrente() {
-        if (Objects.isNull(this.getDataCadastro()))
-            this.setDataCadastro(LocalDateTime.now());
+        if (Objects.isNull(this.getData()))
+            this.setData(LocalDateTime.now());
     }
 
     public void ativado() {
