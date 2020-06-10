@@ -9,7 +9,7 @@
   - Utilizando as facilidades e recursos framework Spring Boot;
   - Lombok na classes para evitar o boilerplate do Java;
   - Framework Hibernarte e Spring Data JPA para garantir a persistiência dos dados e facilitar as operações CRUD (aumentando o nivel de desempenho e escalabilidade);
-  - Boas práticas de programação, utilizando Design Patterns (Builder, Strategy);
+  - Boas práticas de programação, utilizando Design Patterns (Builder, Factory, Strategy);
   - Testes unitátios (TDD/Mockito);
   - Banco de dados PostgreSQL;
   - Docker utilizando o compose;
@@ -33,7 +33,10 @@
   
   - Retornar uma lista completa de historico de conversões paginaveis (JSON/XML):
     - `http://localhost:8080/historico/`
-
+    - `http://localhost:8080/historico/buscaPorPeriodo?dataInicio=01/01/2020&dataFim=31/10/2020`
+    - `http://localhost:8080/historico/buscaValorResultadoIgualOuMenor?valor=50.00`
+    - `http://localhost:8080/historico/buscaValorOrigemIgualOuMaior?valor=80.00`
+   
  - Retornar uma lista completa de escalas em formatos (JSON/XML):
    - `http://localhost:8080/escala/`
    - `http://localhost:8080/escala/exibeTodosEmXML/`
