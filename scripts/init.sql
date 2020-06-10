@@ -27,13 +27,13 @@ create sequence conversor_service.fd02_historico_id_seq;
 
 create table if not exists conversor_service.fd02_historico
 (
-    id                bigint                       not null DEFAULT nextval('conversor_service.fd02_historico_id_seq'),
-    id_escala_origem  bigint                       not null,
-    id_escala_destino bigint                       not null,
-    valor_origem      decimal(19, 6) default 0.0   not null,
-    valor_resultado   decimal(19, 6) default 0.0   not null,
-    data              timestamp      default now() not null,
-    ativo             boolean        default true  null,
+    id                   bigint                       not null DEFAULT nextval('conversor_service.fd02_historico_id_seq'),
+    id_escala_origem     bigint                       not null,
+    id_escala_destino    bigint                       not null,
+    valor_grau_origem    decimal(19, 6) default 0.0   not null,
+    valor_grau_resultado decimal(19, 6) default 0.0   not null,
+    data                 timestamp      default now() not null,
+    ativo                boolean        default true  null,
     primary key (id)
 );
 create unique index uq_fd02_historico on conversor_service.fd02_historico (id);

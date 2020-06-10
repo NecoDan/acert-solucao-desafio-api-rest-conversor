@@ -39,7 +39,7 @@ public class AbstractEntity implements Serializable {
     @JacksonXmlProperty
     @Setter(value = AccessLevel.PUBLIC)
     @Column(name = "ativo", columnDefinition = "tinyint(1) default 1", nullable = false)
-    private boolean ativo = true;
+    private boolean ativo;
 
     @Tolerate
     public AbstractEntity() {

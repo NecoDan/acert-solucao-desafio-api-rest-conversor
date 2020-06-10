@@ -8,7 +8,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +23,7 @@ public class EscalaTermometricaWrapper implements Serializable {
 
     @JacksonXmlProperty(localName = "EscalaTermometrica")
     @JacksonXmlElementWrapper(useWrapping = false)
-    private List<EscalaTermometrica> escalaTermometricas = new ArrayList<>();
+    private List<EscalaTermometrica> escalaTermometricas;
 
     public void add(EscalaTermometrica escalaTermometrica) {
         this.escalaTermometricas.add(escalaTermometrica);
