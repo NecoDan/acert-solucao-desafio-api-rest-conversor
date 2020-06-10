@@ -22,7 +22,7 @@
   
   #### Instruções Inicialização
   
- O comando ```docker-compose up``` inicializará uma instância do Postgres 9.3, nesse momento será criada o schema ```conversor_service``` e suas respectivas tabelas no database ```postgres```. 
+ O comando ```docker-compose up``` inicializará uma instância do Postgres 9.3, nesse momento será criado o database ```conversor_temperaturas``` e o schema ```conversor_service```,com as suas respectivas tabelas no próprio database ```conversor_temperaturas```. 
  Com a finalidade de gerenciar as escalas termométricas e o histórico de conversões efetuados pela API com informações necessárias para a demonstração do projeto. <br> Em seguida a aplicação de api-rest-conversor pode ser executada.
   
   ##### Endpoints: 
