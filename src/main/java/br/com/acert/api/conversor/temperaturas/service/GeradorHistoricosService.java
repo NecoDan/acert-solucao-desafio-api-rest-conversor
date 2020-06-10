@@ -43,8 +43,37 @@ public class GeradorHistoricosService implements IGeradorHistoricosService {
     @Transactional(value = Transactional.TxType.REQUIRED)
     public Historico gerar(Historico historico) throws ValidadorException {
         this.historicoValidation.validar(historico);
+
+        Optional<Historico> optionalHistorico = (Objects.isNull(historico.getId()))
+                ? Optional.of(historico)
+                : getHistoricoExistenteRetornaNovoHistorico(historico);
+
+        Historico historicoNovo = Historico.builder().build();
+
+        if (optionalHistorico.isPresent())
+            historicoNovo = save(optionalHistorico.get());
+
+        return historicoNovo;
+    }
+
+    private Historico save(Historico historico) throws ValidadorException {
         carregarDependencias(historico);
         return this.historicoService.salvar(historico);
+    }
+
+    private Optional<Historico> getHistoricoExistenteRetornaNovoHistorico(Historico historico) {
+        Long id = historico.getId();
+
+        Optional<Historico> historicoExistente = this.historicoService.recuperarPorId(id);
+        Historico historicoNovo = Historico.builder().build();
+
+        if (historicoExistente.isPresent()) {
+            historicoNovo.setEscalaTermometricaOrigem(historicoExistente.get().getEscalaTermometricaOrigem());
+            historicoNovo.setEscalaTermometricaDestino(historicoExistente.get().getEscalaTermometricaDestino());
+            historicoNovo.setValorGrauOrigem(historicoExistente.get().getValorGrauOrigem());
+        }
+
+        return Optional.of(historicoNovo);
     }
 
     private void carregarDependencias(Historico historico) throws ValidadorException {

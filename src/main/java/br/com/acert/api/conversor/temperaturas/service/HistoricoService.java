@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -17,6 +18,11 @@ public class HistoricoService implements IHistoricoService {
 
     private final HistoricoRepository historicoRepository;
     private final IHistoricoValidation historicoValidation;
+
+    @Override
+    public Optional<Historico> recuperarPorId(Long id) {
+        return this.historicoRepository.findById(id);
+    }
 
     @Override
     @Transactional
