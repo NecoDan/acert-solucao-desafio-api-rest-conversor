@@ -17,7 +17,7 @@ import java.util.Objects;
 
 @RestController
 @Validated
-@RequestMapping(path = "escala")
+@RequestMapping(path = "escalas")
 @RequiredArgsConstructor
 @Api(value = "EscalaTermometrica")
 public class EscalaController {

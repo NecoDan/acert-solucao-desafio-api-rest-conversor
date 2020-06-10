@@ -24,9 +24,9 @@ import java.util.Objects;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class EscalaTermometrica extends AbstractEntity {
 
-    private static final long CELSIUS = 1;
-    private static final long FAHRENHEIT = 2;
-    private static final long KELVIN = 3;
+    public static final long CELSIUS = 1;
+    public static final long FAHRENHEIT = 2;
+    public static final long KELVIN = 3;
 
     @Tolerate
     public EscalaTermometrica() {

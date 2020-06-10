@@ -23,7 +23,7 @@ import java.util.Objects;
 
 @RestController
 @Validated
-@RequestMapping(path = "historico")
+@RequestMapping(path = "historicos")
 @RequiredArgsConstructor
 @Api(value = "Historico")
 public class HistoricoController {
@@ -38,13 +38,13 @@ public class HistoricoController {
     }
 
     @ApiOperation(value = "Retornar todos os históricos de conversão, em formato XML apenas.")
-    @GetMapping(path = "/exibirTodosEmXML", produces = {MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(path = "/exibeTodosEmXML", produces = {MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<?> listAllInXML() {
         return retornarListaHistoricosConversao();
     }
 
     @ApiOperation(value = "Retornar todos os históricos de conversão, em formato JSON apenas.")
-    @GetMapping(path = "/exibirTodosEmJSON", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(path = "/exibeTodosEmJSON", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> listAllInJson() {
         return retornarListaHistoricosConversao();
     }

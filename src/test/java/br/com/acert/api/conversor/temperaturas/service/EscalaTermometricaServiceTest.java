@@ -22,7 +22,6 @@ class EscalaTermometricaServiceTest {
 
     @Mock
     private EscalaTermometricaRepository escalaTermometricaRepository;
-
     @Spy
     @InjectMocks
     private EscalaTermometricaService escalaTermometricaService;

@@ -26,4 +26,14 @@ public class RandomicoUtil {
         double rightLimit = 1000D;
         return BigDecimal.valueOf(leftLimit + new Random().nextDouble() * (rightLimit - leftLimit)).setScale(2, BigDecimal.ROUND_UP);
     }
+
+    public static BigDecimal gerarValorRandomicoDecimalAte(double max) {
+        double leftLimit = 1D;
+        double rightLimit = 1000D;
+
+        if (max > 0.0)
+            rightLimit = max;
+
+        return BigDecimal.valueOf(leftLimit + new Random().nextDouble() * (rightLimit - leftLimit)).setScale(2, BigDecimal.ROUND_UP);
+    }
 }

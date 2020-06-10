@@ -27,6 +27,7 @@ public class GeradorHistoricosService implements IGeradorHistoricosService {
     private final IBuilderCalculoConversorService builderCalculoConversorService;
 
     @Override
+    @Transactional(value = Transactional.TxType.REQUIRED)
     public HistoricoWrapper gerar(List<Historico> historicos) throws ValidadorException {
         if (Objects.isNull(historicos) || historicos.isEmpty())
             throw new ValidadorException("Não existem historicos(s) ou historico(s) encontram-se inexistente(s) a serem processados pela API.");
@@ -53,7 +54,7 @@ public class GeradorHistoricosService implements IGeradorHistoricosService {
         Optional<EscalaTermometrica> escalaTermometricaDestinoOptional = this.escalaTermometricaService.recuperarPorId(historico.getEscalaTermometricaDestino().getId());
         escalaTermometricaDestinoOptional.ifPresent(historico::setEscalaTermometricaDestino);
 
-        this.historicoValidation.validar(historico);
+        this.historicoValidation.validarEscalas(historico);
 
         TipoCalculoConversao tipoCalculoConversao = builderCalculoConversorService.obterTipoCalculoConversorAPartir(historico);
         historico.setTipoCalculoConversao(tipoCalculoConversao);

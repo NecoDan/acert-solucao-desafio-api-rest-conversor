@@ -49,10 +49,10 @@ public class CalculadoraConversorEscalas implements ICalculadoraConversorEscalas
                 : BigDecimal.ZERO;
     }
 
-    private BigDecimal calcularFahrenheitParaCelsius(Historico historico, EscalaTermometrica escalaTermometricaOrigem) {
-        return historico.getValorGrauOrigem()
-                .subtract(escalaTermometricaOrigem.getPontoFusao())
-                .divide(BigDecimal.valueOf(VALOR_PADRAO_CALCULO_ESCALA_FAHRENHEIT), 3, RoundingMode.CEILING);
+    private BigDecimal converterFahrenheitParaCelsius(Historico historico, EscalaTermometrica escalaTermometricaOrigem) {
+        return (escalaTermometricaOrigem.isFahrenheit() && historico.getEscalaTermometricaDestino().isCelsius())
+                ? calcularFahrenheitParaCelsius(historico, escalaTermometricaOrigem)
+                : BigDecimal.ZERO;
     }
 
     private BigDecimal converterCelsiusParaKelvin(Historico historico, EscalaTermometrica escalaTermometricaOrigem) {
@@ -85,10 +85,10 @@ public class CalculadoraConversorEscalas implements ICalculadoraConversorEscalas
                 .add(historico.getEscalaTermometricaDestino().getPontoFusao());
     }
 
-    private BigDecimal converterFahrenheitParaCelsius(Historico historico, EscalaTermometrica escalaTermometricaOrigem) {
-        return (escalaTermometricaOrigem.isFahrenheit() && historico.getEscalaTermometricaDestino().isCelsius())
-                ? calcularFahrenheitParaCelsius(historico, escalaTermometricaOrigem)
-                : BigDecimal.ZERO;
+    private BigDecimal calcularFahrenheitParaCelsius(Historico historico, EscalaTermometrica escalaTermometricaOrigem) {
+        return historico.getValorGrauOrigem()
+                .subtract(escalaTermometricaOrigem.getPontoFusao())
+                .divide(BigDecimal.valueOf(VALOR_PADRAO_CALCULO_ESCALA_FAHRENHEIT), 3, RoundingMode.CEILING);
     }
 
     private BigDecimal calcularKelvinParaFahrenheit(Historico historico) {
@@ -112,7 +112,11 @@ public class CalculadoraConversorEscalas implements ICalculadoraConversorEscalas
     }
 
     private boolean isEscalasTermometricasInvalidas(Historico historico) {
-        return (Objects.isNull(historico.getEscalaTermometricaDestino()) || Objects.isNull(historico.getEscalaTermometricaOrigem())
-                || Objects.isNull(historico.getValorGrauOrigem()) || historico.getValorGrauOrigem().compareTo(BigDecimal.ZERO) == 0);
+        return (Objects.isNull(historico.getEscalaTermometricaDestino())
+                || Objects.isNull(historico.getEscalaTermometricaOrigem())
+                || Objects.isNull(historico.getValorGrauOrigem())
+                || historico.getValorGrauOrigem().compareTo(BigDecimal.ZERO) == 0
+                || Objects.isNull(historico.getEscalaTermometricaOrigem().getPontoFusao())
+                || Objects.isNull(historico.getEscalaTermometricaDestino().getPontoFusao()));
     }
 }

@@ -7,6 +7,8 @@ public interface IHistoricoValidation {
 
     void validar(Historico historico) throws ValidadorException;
 
+    void validarEscalas(Historico historico) throws ValidadorException;
+
     void validarSomente(Historico historico) throws ValidadorException;
 
 }
