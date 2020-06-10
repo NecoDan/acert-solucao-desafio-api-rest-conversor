@@ -4,6 +4,7 @@ import br.com.acert.api.conversor.temperaturas.model.Historico;
 import br.com.acert.api.conversor.temperaturas.model.dtos.HistoricoWrapper;
 import br.com.acert.api.conversor.temperaturas.util.exceptions.ValidadorException;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface IGeradorHistoricosService {
@@ -11,4 +12,6 @@ public interface IGeradorHistoricosService {
     HistoricoWrapper gerar(List<Historico> historicos) throws ValidadorException;
 
     Historico gerar(Historico historico) throws ValidadorException;
+
+    Historico save(Historico historico) throws ValidadorException;
 }
