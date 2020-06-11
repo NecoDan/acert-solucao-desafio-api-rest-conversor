@@ -41,6 +41,8 @@ class HistoricoControllerTest {
     @MockBean
     private GeradorHistoricosService geradorHistoricosService;
 
+    // WebTestClient webTestClientHistoricos = WebTestClient.bindToController(new HistoricoController(historicoReportService, geradorHistoricosService)).build();
+
     @Test
     public void deveRetornarProducerJSONContendoUmaListaComTodosOsHistoricosComEndpoint() throws Exception {
         System.out.println("\n#TEST: deveRetornarProducerJSONContendoUmaListaComTodosOsHistoricosComEndpoint: ");
@@ -225,6 +227,15 @@ class HistoricoControllerTest {
 
     private ResultActions getResponseEntityEndPointsMethodGET(String url, MediaType mediaType) throws Exception {
         return this.mvc.perform(get(url).accept(mediaType));
+    }
+
+    private String getJSON() throws Exception {
+        HistoricoWrapper historicoWrapper = HistoricoWrapper.builder().build();
+        historicoWrapper.add(constroiHistoricoValido(false));
+
+        given(historicoReportService.listarTodos()).willReturn(historicoWrapper);
+        ResultActions response = getResponseEntityEndPointsMethodGET(PATH_PADRAO, MediaType.APPLICATION_JSON);
+        return StringUtil.formatConteudoJSONFrom(response.andReturn().getResponse().getContentAsString());
     }
 
     private void toStringEnd(ResultActions response, MediaType mediaType) throws Exception {

@@ -5,9 +5,7 @@ import br.com.acert.api.conversor.temperaturas.util.domain.AbstractEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.experimental.Tolerate;
 import org.hibernate.annotations.Fetch;
@@ -56,6 +54,8 @@ public class Historico extends AbstractEntity {
     @JacksonXmlProperty
     @Digits(integer = 19, fraction = 6)
     @Column(name = "valor_grau_resultado")
+    @Getter
+    @Setter(AccessLevel.PRIVATE)
     BigDecimal valorGrauResultado;
 
     @Transient
