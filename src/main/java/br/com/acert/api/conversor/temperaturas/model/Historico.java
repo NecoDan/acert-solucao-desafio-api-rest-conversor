@@ -63,8 +63,10 @@ public class Historico extends AbstractEntity {
     private TipoCalculoConversao tipoCalculoConversao;
 
     public void calcularResultado() {
-        if (Objects.isNull(this.tipoCalculoConversao))
+        if (Objects.isNull(this.tipoCalculoConversao)) {
+            this.valorGrauResultado = BigDecimal.ZERO;
             return;
+        }
         this.valorGrauResultado = this.tipoCalculoConversao.getRegraCalculoConversorService().converte(this);
         this.valorGrauResultado = this.valorGrauResultado.setScale(2, BigDecimal.ROUND_UP);
     }
